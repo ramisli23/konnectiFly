@@ -1,17 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:konnecti/components/components.dart';
 import 'package:konnecti/l10n/app_localizations.dart';
 
 class CountryCarousel extends StatelessWidget {
-  final List<Map<String, String>> countries = [
-    {'name': 'Italy', 'flag': '🇮🇹'},
-    {'name': 'Dubai', 'flag': '🇦🇪'},
-    {'name': 'Brazil', 'flag': '🇧🇷'},
-    {'name': 'Malaysia', 'flag': '🇲🇾'},
-    {'name': 'France', 'flag': '🇫🇷'},
-    {'name': 'Germany', 'flag': '🇩🇪'},
-  ];
-
   CountryCarousel({super.key});
+
+  final List<Map<String, String>> countries = const [
+    {
+      'id': '151', // Italy
+      'name': 'Italy',
+      'flag': '🇮🇹',
+      'image': 'assets/countries/italy.jpg',
+      'packageType': 'DATA-ONLY',
+    },
+    {
+      'id': '68', // United Arab Emirates (Dubai)
+      'name': 'Dubai',
+      'flag': '🇦🇪',
+      'image': 'assets/countries/dubai.jpg',
+      'packageType': 'DATA-ONLY',
+    },
+    {
+      'id': '211', // Brazil
+      'name': 'Brazil',
+      'flag': '🇧🇷',
+      'image': 'assets/countries/brazil.jpg',
+      'packageType': 'DATA-ONLY',
+    },
+    {
+      'id': '87', // Malaysia
+      'name': 'Malaysia',
+      'flag': '🇲🇾',
+      'image': 'assets/countries/malaysia.jpg',
+      'packageType': 'DATA-ONLY',
+    },
+    {
+      'id': '150', // France
+      'name': 'France',
+      'flag': '🇫🇷',
+      'image': 'assets/countries/france.jpg',
+      'packageType': 'DATA-ONLY',
+    },
+    {
+      'id': '149', // Germany
+      'name': 'Germany',
+      'flag': '🇩🇪',
+      'image': 'assets/countries/germany.jpg',
+      'packageType': 'DATA-ONLY',
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +57,9 @@ class CountryCarousel extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(20),
       padding: const EdgeInsets.all(20),
-      width: double.infinity,
-      height: 127,
+      height: 140,
       decoration: BoxDecoration(
-        color: const Color(0xffFFFFFF),
+        color: Colors.white,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
@@ -38,32 +74,52 @@ class CountryCarousel extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            tr.myEsim, // 👈 Traduction ici
-            style: const TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
+            tr.myEsim,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
           ),
+          const SizedBox(height: 12),
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: countries.length,
               itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Column(
-                    children: [
-                      CircleAvatar(
-                        radius: 20,
-                        backgroundColor: Colors.transparent,
-                        child: Text(countries[index]['flag']!),
+                final country = countries[index];
+
+                return InkWell(
+                  borderRadius: BorderRadius.circular(20),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (_) => Buyesimdetails(
+                              countryId: country['id']!,
+                              countryName: country['name']!,
+                              imagePath: country['image']!,
+                              packageType: country['packageType']!,
+                            ),
                       ),
-                      const SizedBox(height: 4),
-                      Text(
-                        countries[index]['name']!,
-                        style: const TextStyle(fontSize: 12),
-                      ),
-                    ],
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Column(
+                      children: [
+                        CircleAvatar(
+                          radius: 22,
+                          backgroundColor: Colors.transparent,
+                          child: Text(
+                            country['flag']!,
+                            style: const TextStyle(fontSize: 24),
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          country['name']!,
+                          style: const TextStyle(fontSize: 13),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },

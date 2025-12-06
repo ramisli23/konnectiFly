@@ -60,6 +60,7 @@ class _SignupState extends State<Signup> {
                 // Full Name
                 TextFormField(
                   controller: _fullNameController,
+                  cursorColor: Colors.black,
                   validator:
                       (val) => val == null || val.isEmpty ? tr.fullName : null,
                   decoration: InputDecoration(
@@ -68,6 +69,7 @@ class _SignupState extends State<Signup> {
                       color: Colors.black.withOpacity(0.25),
                     ),
                     filled: true,
+
                     fillColor: Colors.grey.withOpacity(0.15),
                     hintText: tr.fullName,
                     border: OutlineInputBorder(
@@ -81,6 +83,7 @@ class _SignupState extends State<Signup> {
                 // Email
                 TextFormField(
                   controller: _emailController,
+                  cursorColor: Colors.black,
                   validator: (val) {
                     if (val == null || val.isEmpty) return tr.validEmail;
                     if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(val)) {
@@ -107,12 +110,14 @@ class _SignupState extends State<Signup> {
                 // Phone number
                 TextFormField(
                   controller: _phoneController,
+                  cursorColor: Colors.black,
                   keyboardType: TextInputType.phone,
                   validator:
                       (val) =>
                           val == null || val.length < 6 ? tr.phoneNumber : null,
                   decoration: InputDecoration(
                     filled: true,
+
                     fillColor: Colors.grey.withOpacity(0.15),
                     hintText: tr.phoneNumber,
                     suffixIcon: Icon(
@@ -130,6 +135,7 @@ class _SignupState extends State<Signup> {
                 // Password
                 TextFormField(
                   controller: _passwordController,
+                  cursorColor: Colors.black,
                   obscureText: true,
                   validator:
                       (val) =>

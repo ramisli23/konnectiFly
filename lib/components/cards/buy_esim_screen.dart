@@ -219,7 +219,11 @@ class _BuyEsimScreenState extends State<BuyEsimScreen> {
         );
 
       case 1:
-        return Text("local.comingSoon");
+        return Regionalesims(
+          continents: provider.continents,
+          packageType:
+              selectedPackageType == 0 ? "DATA-ONLY" : "DATA-VOICE-SMS",
+        );
 
       case 2:
         return Text(local.globalComingSoon);

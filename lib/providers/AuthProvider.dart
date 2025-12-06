@@ -89,13 +89,29 @@ class AuthProvider extends ChangeNotifier {
   Map<String, dynamic>? get user => _user;
 
   /// === Initialisation (charger données depuis SharedPreferences) ===
+  ///
+  ///
+  ///
+  ///
   Future<void> loadAuthData() async {
+    final prefs = await SharedPreferences.getInstance();
+    _accessToken = prefs.getString("access_token");
+    _userId = prefs.getString("user_id");
+
+    if (_accessToken != null) {
+      await fetchMe(); // ✅ charger user dès le démarrage
+    }
+
+    notifyListeners();
+  }
+
+  /*Future<void> loadAuthData() async {
     final prefs = await SharedPreferences.getInstance();
     _accessToken = prefs.getString("access_token");
     _userId = prefs.getString("user_id");
     notifyListeners();
   }
-
+*/
   /// === Sauvegarder token ===
   Future<void> setAccessToken(String token) async {
     _accessToken = token;

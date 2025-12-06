@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:konnecti/components/cards/ForgotPasswordScreen.dart';
 import 'package:konnecti/components/components.dart';
 import 'package:konnecti/l10n/app_localizations.dart';
 import 'package:konnecti/providers/AuthProvider.dart';
@@ -159,7 +160,12 @@ class _LoginFormState extends State<LoginForm> {
             ),
             TextButton(
               onPressed: () {
-                // TODO: implement forget password
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const ForgotPasswordScreen(),
+                  ),
+                );
               },
               child: Text(
                 tr.forgetPassword,

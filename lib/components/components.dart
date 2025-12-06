@@ -6,6 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/route_manager.dart';
 
 import 'package:konnecti/components/cards/PaymentWebView.dart';
+import 'package:konnecti/components/cards/Paymentlauncher.dart';
 import 'package:konnecti/components/cards/balance.dart';
 import 'package:konnecti/invoisescreen.dart';
 import 'package:konnecti/modules/country.dart';
